@@ -1,6 +1,10 @@
 package com.example;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 
 import javax.sql.DataSource;
 
@@ -35,33 +39,15 @@ public class Main {
      * Main method.
      * @param args
      * @throws IOException
+     * @throws SQLException 
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
     	
-    	String dbFile = "";
-    	
-    	HikariConfig hikariConfig = new HikariConfig();
-    	hikariConfig.setAutoCommit(false);
-    	hikariConfig.setConnectionTimeout(5000);
-        hikariConfig.setDriverClassName(org.hsqldb.jdbc.JDBCDriver.class.getName());
-        hikariConfig.setIdleTimeout(120000L);
-        hikariConfig.setInitializationFailFast(true);
-        hikariConfig.setJdbcUrl("jdbc:hsqldb:file:" + dbFile + ";hsqldb.write_delay=false");
-        hikariConfig.setMaximumPoolSize(pConfig.getMaxPoolSize());
-        hikariConfig.setPassword("sa123");
-//        hikariConfig.setPoolName(“test pool");
-        hikariConfig.setUsername("SA");
-        
-    	DataSource ds = new HikariDataSource(hikariConfig);
-    	
-    	
-
-    	
-//        final HttpServer server = Utils.startServer();
-//        System.out.println(String.format("Jersey app started with WADL available at "
-//                + "%sapplication.wadl\nHit enter to stop it...", Utils.BASE_URI));
-//        System.in.read();
-//        server.stop();
+        final HttpServer server = Utils.startServer();
+        System.out.println(String.format("Jersey app started with WADL available at "
+                + "%sapplication.wadl\nHit enter to stop it...", Utils.BASE_URI));
+        System.in.read();
+        server.stop();
     }
 }
 
