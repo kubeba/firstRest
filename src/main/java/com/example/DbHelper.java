@@ -1,13 +1,41 @@
 package com.example;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import classes.MyConstants;
+
 public class DbHelper {
+	
+	public static void executeInsertDb(String sqlQuery) {            
+	    try (
+	    	java.sql.Connection conn = DriverManager.getConnection(MyConstants.getDbconnection(), MyConstants.getDbuser(), MyConstants.getDbPassword());
+	    	Statement statement = conn.createStatement();
+	    	ResultSet rs = statement.executeQuery(sqlQuery)) {
+	    } catch (SQLException e) {
+	        e.getMessage();
+	    }
+	}
+	
+	public static JSONArray executeQueryDb(String sqlQuery) {        
+		JSONArray json = new JSONArray();
+	    try (
+	    	java.sql.Connection conn = DriverManager.getConnection(MyConstants.getDbconnection(), MyConstants.getDbuser(), MyConstants.getDbPassword());
+	    	Statement statement = conn.createStatement();
+	    	ResultSet rs = statement.executeQuery(sqlQuery)) {
+	    	getReadResultSetToJsonArray(json, rs);
+	        return json;               
+	    } catch (SQLException e) {
+	        e.getMessage();
+	        return null;
+	    }
+	}
 	
 	protected static JSONArray getReadResultSetToJsonArray(JSONArray json, ResultSet result) throws SQLException {
 		ResultSetMetaData md = result.getMetaData();

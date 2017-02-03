@@ -1,12 +1,13 @@
 package com.example;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.swing.text.SimpleAttributeSet;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -15,6 +16,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.matchers.JUnitMatchers;
 
 public class MyResourceTest {
 
@@ -53,9 +55,10 @@ public class MyResourceTest {
     
     @Test
     public void testUserResource() {
-    	String testString = Utils.randomString(20);
-        String responseMsg = target.path("myUsers/" + testString).request().get(String.class);
-        assertEquals("getUserById is called, id = " + testString, responseMsg);
+    	String testString = "1";
+        String responseMsg = target.path("myUsers/full/" + testString).request().get(String.class);
+        assertThat(responseMsg, JUnitMatchers.containsString("FIRST_NAME"));
+        assertThat(responseMsg, JUnitMatchers.containsString("\"UID\""));
     }
     
     @Test

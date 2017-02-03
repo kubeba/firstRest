@@ -37,7 +37,7 @@ public class Utils {
     
     public static DataSource getDataSource() {
     	
-    	String dbFile = "C:\\gcdm\\bin\\hsqldb\\myDB\\db2";
+    	String dbFile = "/Users/Shared/hsqldb/databases/myUserDb";
     	
     	HikariConfig hikariConfig = new HikariConfig();
     	hikariConfig.setAutoCommit(false);
@@ -46,8 +46,8 @@ public class Utils {
         hikariConfig.setIdleTimeout(120000L);
         hikariConfig.setInitializationFailFast(true);
         hikariConfig.setJdbcUrl("jdbc:hsqldb:file:" + dbFile + ";hsqldb.write_delay=false");
-//        hikariConfig.setMaximumPoolSize(pConfig.getMaxPoolSize());
-        hikariConfig.setPassword("sa123");
+        hikariConfig.setMaximumPoolSize(1);
+        hikariConfig.setPassword("sa");
         hikariConfig.setUsername("SA");
         
     	DataSource ds = new HikariDataSource(hikariConfig);
