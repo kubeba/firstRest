@@ -17,10 +17,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import classes.MyConstants;
 import classes.User;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 
 @Path("/myUsers")
 public class UserResource {
@@ -69,9 +72,11 @@ public class UserResource {
 
 	@POST
 	@Path("/post")
-	@Produces("application/text")
+	@Produces("application/json")
 	public Response createUser(String myJson) throws SQLException, IOException {
 
+		JSONObject jsonResponse = new JSONObject();
+		
 		ObjectMapper mapper = new ObjectMapper();
 		User user = mapper.readValue(myJson, User.class);
 
@@ -88,8 +93,8 @@ public class UserResource {
 				+ user.getFirstName()
 				+ "\', \'"
 				+ user.getLastName() + "\', \'" + user.getNickName() + "\');";
-		DbHelper.executeInsertDb(createUserString);
-
+		JSONObject createUserResponse = DbHelper.executeInsertDb(createUserString);
+		
 		String createUserDataString = "INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) "
 				+ "VALUES ("
 				+ maxUID
@@ -97,14 +102,20 @@ public class UserResource {
 				+ user.getStartWeight()
 				+ ", \'"
 				+ sDate + "\', \'" + bDate + "\');";
-		DbHelper.executeInsertDb(createUserDataString);
+		JSONObject createUserDataResponse = DbHelper.executeInsertDb(createUserDataString);
+		
 
-		// String query =
-		// "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE UID = "
-		// + maxUID + ");";
-		// JSONArray json = DbHelper.executeQueryDb(query);
-		// return Response.status(200).entity(json.toString()).build();
-		return Response.status(200).build();
+		if (createUserResponse.get(MyConstants.getHttpCode()).equals(createUserDataResponse.get(MyConstants.getHttpCode()))) {
+			jsonResponse = createUserResponse;
+		} else {
+			if ((int) createUserResponse.getInt(MyConstants.getHttpCode()) > (int) createUserDataResponse.get(MyConstants.getHttpCode())){
+				jsonResponse = createUserResponse;
+				} else {
+				jsonResponse = createUserDataResponse;
+			}
+		}
+		
+		return Response.status((int) jsonResponse.get(MyConstants.getHttpCode())).entity(jsonResponse.toString()).build();
 
 	}
 
@@ -112,18 +123,5 @@ public class UserResource {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(dateToFormat);
 	}
-
-	public ResultSet retrieveSQLQueryHikari(String query) throws SQLException {
-		DataSource ds = Utils.getDataSource();
-		Statement stmt = ds.getConnection().createStatement();
-		try {
-			ResultSet result = stmt.executeQuery(query);
-			return result;
-		} finally {
-			if (ds.getConnection() != null) {
-				stmt.close();
-				ds.getConnection().close();
-			}
-		}
-	}
 }
+

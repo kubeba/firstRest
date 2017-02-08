@@ -13,14 +13,21 @@ import classes.MyConstants;
 
 public class DbHelper {
 	
-	public static void executeInsertDb(String sqlQuery) {            
+	public static JSONObject executeInsertDb(String sqlQuery) {    
+		JSONObject json = new JSONObject();
 	    try (
 	    	java.sql.Connection conn = DriverManager.getConnection(MyConstants.getDbconnection(), MyConstants.getDbuser(), MyConstants.getDbPassword());
 	    	Statement statement = conn.createStatement();
 	    	ResultSet rs = statement.executeQuery(sqlQuery)) {
+	    	json.put("Message", "Everythings fine.");
+	    	json.put("httpCode", 200);
 	    } catch (SQLException e) {
-	        e.getMessage();
+	    	json.put("errorCode", e.getErrorCode());
+	    	json.put("errorMessage", e.getMessage());
+	    	json.put("sqlState", e.getSQLState());
+	    	json.put("httpCode", 500);
 	    }
+		return json;
 	}
 	
 	public static JSONArray executeQueryDb(String sqlQuery) {        
@@ -33,7 +40,7 @@ public class DbHelper {
 	        return json;               
 	    } catch (SQLException e) {
 	        e.getMessage();
-	        return null;
+	        return json;
 	    }
 	}
 	
