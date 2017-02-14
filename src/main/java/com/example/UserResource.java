@@ -1,9 +1,7 @@
 package com.example;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,13 +9,12 @@ import javax.sql.DataSource;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-
-import java.sql.Connection;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,7 +23,6 @@ import classes.MyConstants;
 import classes.User;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 
 @Path("/myUsers")
 public class UserResource {
@@ -37,10 +33,7 @@ public class UserResource {
 	public Response getUserById(@PathParam("id") String id)
 			throws SQLException, IOException {
 
-		String query = "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE"
-				+ " (u.UID = ug.UID) and ug.UID = " + id + ";";
-
-		JSONArray json = DbHelper.executeQueryDb(query);
+		JSONArray json = DbHelper.executeQueryDb(DbHelper.getUserQueryById(id));
 
 		return Response.status(200).entity(json.toString()).build();
 	}
@@ -63,15 +56,14 @@ public class UserResource {
 	public Response queryAllUsers(@QueryParam("name") String name)
 			throws SQLException, IOException {
 
-		
 		String query = "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE"
 				+ " (u.UID = ug.UID) " + "AND ((LOWER(u.LAST_NAME) LIKE \'%"
 				+ name.toLowerCase() + "%\') OR (LOWER(u.FIRST_NAME) LIKE \'%"
 				+ name.toLowerCase() + "%\') OR (LOWER(u.NICKNAME) LIKE \'%"
 				+ name.toLowerCase() + "%\'));";
-		
+
 		JSONArray json = DbHelper.executeQueryDb(query);
-		
+
 		return Response.status(200).entity(json.toString()).build();
 	}
 
@@ -80,13 +72,12 @@ public class UserResource {
 	@Produces("application/json")
 	public Response createUser(String myJson) throws SQLException, IOException {
 
-		JSONObject jsonResponse = new JSONObject();
+		JSONArray jsonResponses = new JSONArray();
 		DataSource ds = Utils.getDataSource();
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		User user = mapper.readValue(myJson, User.class);
 
-		// int maxUID = maxUserId();
 		int maxUID = user.getUid();
 
 		String sDate = convertDate(user.getStartDate());
@@ -99,9 +90,9 @@ public class UserResource {
 				+ user.getFirstName()
 				+ "\', \'"
 				+ user.getLastName() + "\', \'" + user.getNickName() + "\');";
-		
-		JSONObject createUserResponse = DbHelper.executeInsertDb(createUserString, ds);
-		
+
+		jsonResponses.put(DbHelper.executeInsertDb(createUserString, ds));
+
 		String createUserDataString = "INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) "
 				+ "VALUES ("
 				+ maxUID
@@ -109,50 +100,84 @@ public class UserResource {
 				+ user.getStartWeight()
 				+ ", \'"
 				+ sDate + "\', \'" + bDate + "\');";
-		JSONObject createUserDataResponse = DbHelper.executeInsertDb(createUserDataString, ds);
-		
-		if (createUserResponse.get(MyConstants.getHttpCode()).equals(createUserDataResponse.get(MyConstants.getHttpCode()))) {
-			jsonResponse = createUserResponse;
-		} else {
-			if ((int) createUserResponse.getInt(MyConstants.getHttpCode()) > (int) createUserDataResponse.get(MyConstants.getHttpCode())){
-				jsonResponse = createUserResponse;
-				} else {
-				jsonResponse = createUserDataResponse;
-			}
-		}
-		
-		return Response.status((int) jsonResponse.get(MyConstants.getHttpCode())).entity(jsonResponse.toString()).build();
+		jsonResponses.put(DbHelper.executeInsertDb(createUserDataString, ds));
 
+		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
+
+		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
+				.entity(jsonFinal.toString()).build();
 	}
-	
+
 	@DELETE
 	@Path("/delete/{id}")
 	@Produces("application/json")
 	public Response deleteUserById(@PathParam("id") String id)
 			throws SQLException, IOException {
 
-		JSONObject jsonResponse = new JSONObject();
+		JSONArray jsonResponses = new JSONArray();
 		DataSource ds = Utils.getDataSource();
-		
-		String query = "DELETE FROM USERS WHERE UID = " + id + ";";
 
-		JSONObject jsonDelUser = DbHelper.executeDeleteDb(query, ds);
-		
-		query = "DELETE FROM PUBLIC.USER_DATA_GENERAL WHERE UID = " + id + ";";
-		
-		JSONObject jsonDelUserData = DbHelper.executeDeleteDb(query, ds);
-		
-		if (jsonDelUser.get(MyConstants.getHttpCode()).equals(jsonDelUserData.get(MyConstants.getHttpCode()))) {
-			jsonResponse = jsonDelUser;
+		if (DbHelper.executeQueryDb(DbHelper.getUserQueryById(id)).isNull(0)) {
+			JSONObject noUserFound = new JSONObject();
+			noUserFound.put(MyConstants.getHttpCode(), 404);
+			noUserFound.put("Message", "No user found for id = " + id);
+			jsonResponses.put(noUserFound);
 		} else {
-			if ((int) jsonDelUser.getInt(MyConstants.getHttpCode()) > (int) jsonDelUserData.get(MyConstants.getHttpCode())){
-				jsonResponse = jsonDelUser;
-				} else {
-				jsonResponse = jsonDelUserData;
-			}
+
+			String query = "DELETE FROM USERS WHERE UID = " + id + ";";
+
+			jsonResponses.put(DbHelper.executeDeleteDb(query, ds));
+
+			query = "DELETE FROM PUBLIC.USER_DATA_GENERAL WHERE UID = " + id
+					+ ";";
+
+			jsonResponses.put(DbHelper.executeDeleteDb(query, ds));
 		}
 
-		return Response.status((int) jsonResponse.get(MyConstants.getHttpCode())).entity(jsonResponse.toString()).build();
+		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
+
+		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
+				.entity(jsonFinal.toString()).build();
+	}
+
+	@PUT
+	@Path("/update/{id}")
+	@Produces("application/json")
+	public Response updateUserById(@PathParam("id") String id, String myJson)
+			throws SQLException, IOException {
+
+		ObjectMapper mapper = new ObjectMapper();
+		User user = mapper.readValue(myJson, User.class);
+
+		JSONArray jsonResponses = new JSONArray();
+		DataSource ds = Utils.getDataSource();
+
+		if (DbHelper.executeQueryDb(DbHelper.getUserQueryById(id)).isNull(0)) {
+			JSONObject noUserFound = new JSONObject();
+			noUserFound.put(MyConstants.getHttpCode(), 404);
+			noUserFound.put("Message", "No user found for id = " + id);
+			jsonResponses.put(noUserFound);
+		} else {
+
+			String query = "UPDATE PUBLIC.USERS SET FIRST_NAME = \'"
+					+ user.getFirstName() + "\', LAST_NAME = \'"
+					+ user.getLastName() + "\', NICKNAME = \'"
+					+ user.getNickName() + "\' WHERE UID = " + id + ";";
+
+			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
+
+			query = "UPDATE PUBLIC.USER_DATA_GENERAL SET START_WEIGHT = \'"
+					+ user.getStartWeight() + "\', START_DATE = \'"
+					+ convertDate(user.getStartDate()) + "\', BIRTHDATE = \'"
+					+ convertDate(user.getBirthDate()) + "\' WHERE UID = " + id + ";";
+
+			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
+		}
+
+		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
+
+		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
+				.entity(jsonFinal.toString()).build();
 	}
 
 	private String convertDate(Date dateToFormat) {
@@ -160,4 +185,3 @@ public class UserResource {
 		return df.format(dateToFormat);
 	}
 }
-

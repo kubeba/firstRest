@@ -136,4 +136,9 @@ public class DbHelper {
 		return json;
 	}
 
+	public static String getUserQueryById(String id){
+		String query = "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE"
+				+ " (u.UID = ug.UID) and ug.UID = " + id + ";";
+		return query;
+	}
 }
