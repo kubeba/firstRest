@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Connection;
+
+import javax.sql.DataSource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,35 +16,77 @@ import classes.MyConstants;
 
 public class DbHelper {
 	
-	public static JSONObject executeInsertDb(String sqlQuery) {    
+	public static JSONObject executeInsertDb(String sqlQuery, DataSource ds) throws SQLException {    
 		JSONObject json = new JSONObject();
-	    try (
-	    	java.sql.Connection conn = DriverManager.getConnection(MyConstants.getDbconnection(), MyConstants.getDbuser(), MyConstants.getDbPassword());
-	    	Statement statement = conn.createStatement();
-	    	ResultSet rs = statement.executeQuery(sqlQuery)) {
-	    	json.put("Message", "Everythings fine.");
-	    	json.put("httpCode", 200);
+    	Connection con = ds.getConnection();
+    	Statement stmt = con.createStatement();
+    	
+	    try {
+			stmt.executeQuery(sqlQuery);
+			json.put("Message", "Everything's fine.");
+			json.put("httpCode", 200);		
+			stmt.execute("COMMIT;");
+			return json;
 	    } catch (SQLException e) {
 	    	json.put("errorCode", e.getErrorCode());
 	    	json.put("errorMessage", e.getMessage());
 	    	json.put("sqlState", e.getSQLState());
 	    	json.put("httpCode", 500);
-	    }
-		return json;
+	    	stmt.execute("ROLLBACK;");
+	    	return json;
+	    } finally {
+			con.close();
+			stmt.close();			
+		}
 	}
 	
-	public static JSONArray executeQueryDb(String sqlQuery) {        
+	public static JSONArray executeQueryDb(String sqlQuery) throws SQLException {   
+		
 		JSONArray json = new JSONArray();
-	    try (
-	    	java.sql.Connection conn = DriverManager.getConnection(MyConstants.getDbconnection(), MyConstants.getDbuser(), MyConstants.getDbPassword());
-	    	Statement statement = conn.createStatement();
-	    	ResultSet rs = statement.executeQuery(sqlQuery)) {
+		DataSource ds = Utils.getDataSource();
+    	Connection con = ds.getConnection();
+    	Statement stmt = con.createStatement();
+    	
+	    try {
+	    	ResultSet rs = stmt.executeQuery(sqlQuery);
 	    	getReadResultSetToJsonArray(json, rs);
 	        return json;               
 	    } catch (SQLException e) {
-	        e.getMessage();
+	    	JSONObject jso = new JSONObject();
+	    	jso.put("errorCode", e.getErrorCode());
+	    	jso.put("errorMessage", e.getMessage());
+	    	jso.put("sqlState", e.getSQLState());
+	    	jso.put("httpCode", 500);
+	    	json.put(jso);
 	        return json;
+	    } finally {
+	    	stmt.close();
+	    	con.close();
 	    }
+	}
+	
+	public static JSONObject executeDeleteDb(String sqlQuery, DataSource ds) throws SQLException {    
+		JSONObject json = new JSONObject();
+    	Connection con = ds.getConnection();
+    	Statement stmt = con.createStatement();
+    	
+	    try {
+			stmt.executeQuery(sqlQuery);
+			json.put("Message", "Everything's fine. Contact deleted." );
+			json.put("httpCode", 200);		
+			stmt.execute("COMMIT;");
+			return json;
+	    } catch (SQLException e) {
+	    	json.put("errorCode", e.getErrorCode());
+	    	json.put("errorMessage", e.getMessage());
+	    	json.put("sqlState", e.getSQLState());
+	    	json.put("httpCode", 500);
+	    	stmt.execute("ROLLBACK;");
+	    	return json;
+	    } finally {
+			con.close();
+			stmt.close();			
+		}
 	}
 	
 	protected static JSONArray getReadResultSetToJsonArray(JSONArray json, ResultSet result) throws SQLException {

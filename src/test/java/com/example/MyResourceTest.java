@@ -11,6 +11,8 @@ import java.util.Calendar;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+//import javax.xml.ws.Response;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
@@ -59,6 +61,18 @@ public class MyResourceTest {
         String responseMsg = target.path("myUsers/full/" + testString).request().get(String.class);
         assertThat(responseMsg, JUnitMatchers.containsString("FIRST_NAME"));
         assertThat(responseMsg, JUnitMatchers.containsString("\"UID\""));
+    }
+    
+    @Test
+    public void testUserResourceHttpCodeGetAll() {
+    	Response response = target.path("myUsers/full/").request().get();
+        assertEquals(response.getStatus(), 200);
+    }
+    
+    @Test
+    public void testUserResourceHttpCodeQuery() {
+    	Response response = target.path("myUsers/full/query?name=e").request().get();
+        assertEquals(response.getStatus(), 200);
     }
     
     @Test
