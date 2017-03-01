@@ -1,25 +1,27 @@
 package com.example;
 
-import java.sql.DriverManager;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Connection;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import classes.MyConstants;
-
 public class DbHelper {
+	
+	final static Logger logger = Logger.getLogger(DbHelper.class);
 	
 	public static JSONObject executeInsertDb(String sqlQuery, DataSource ds) throws SQLException {    
 		JSONObject json = new JSONObject();
     	Connection con = ds.getConnection();
     	Statement stmt = con.createStatement();
+    	
+    	logger.info("This query will be executed (inserted): \n" + sqlQuery); 
     	
 	    try {
 			stmt.executeQuery(sqlQuery);
@@ -37,6 +39,7 @@ public class DbHelper {
 	    } finally {
 			con.close();
 			stmt.close();			
+	    	logger.info("This is the result: \n" + json); 
 		}
 	}
 	
@@ -46,6 +49,8 @@ public class DbHelper {
 		DataSource ds = Utils.getDataSource();
     	Connection con = ds.getConnection();
     	Statement stmt = con.createStatement();
+    	
+    	logger.info("This query will be executed (getData): \n" + sqlQuery);
     	
 	    try {
 	    	ResultSet rs = stmt.executeQuery(sqlQuery);
@@ -62,6 +67,7 @@ public class DbHelper {
 	    } finally {
 	    	stmt.close();
 	    	con.close();
+	    	logger.info("This is the result: \n" + json); 
 	    }
 	}
 	
@@ -69,6 +75,8 @@ public class DbHelper {
 		JSONObject json = new JSONObject();
     	Connection con = ds.getConnection();
     	Statement stmt = con.createStatement();
+    	
+    	logger.info("This query will be executed (delete): \n" + sqlQuery);
     	
 	    try {
 			stmt.executeQuery(sqlQuery);
@@ -86,6 +94,7 @@ public class DbHelper {
 	    } finally {
 			con.close();
 			stmt.close();			
+			logger.info("This is the result: \n" + json); 
 		}
 	}
 	
@@ -139,6 +148,16 @@ public class DbHelper {
 	public static String getUserQueryById(String id){
 		String query = "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE"
 				+ " (u.UID = ug.UID) and ug.UID = " + id + ";";
+		return query;
+	}
+	
+	public static String getAllUserProgressById(String id){
+		String query = "SELECT * FROM USER_DATA_PROGRESS WHERE UID = " + id + ";";
+		return query;
+	}
+	
+	public static String getSingleUserProgressById(String id, String date){
+		String query = "SELECT * FROM USER_DATA_PROGRESS WHERE UID = " + id + " AND DATE = \'" + date + "\';";
 		return query;
 	}
 }

@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/myUsers")
 public class UserResource {
+	
+	final static Logger logger = Logger.getLogger(UserResource.class);
 
 	@GET
 	@Path("/full/{id}")
@@ -46,7 +49,7 @@ public class UserResource {
 		String query = "SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE"
 				+ " (u.UID = ug.UID);";
 		JSONArray json = DbHelper.executeQueryDb(query);
-
+		
 		return Response.status(200).entity(json.toString()).build();
 	}
 
@@ -80,8 +83,9 @@ public class UserResource {
 
 		int maxUID = user.getUid();
 
-		String sDate = convertDate(user.getStartDate());
-		String bDate = convertDate(user.getBirthDate());
+		String sDate = checkDateForNull(user.getStartDate());
+
+		String bDate = checkDateForNull(user.getBirthDate());
 
 		String createUserString = "INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) "
 				+ "VALUES ("
@@ -103,7 +107,7 @@ public class UserResource {
 		jsonResponses.put(DbHelper.executeInsertDb(createUserDataString, ds));
 
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
-
+		
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
 				.entity(jsonFinal.toString()).build();
 	}
@@ -125,17 +129,17 @@ public class UserResource {
 		} else {
 
 			String query = "DELETE FROM USERS WHERE UID = " + id + ";";
-
+			
 			jsonResponses.put(DbHelper.executeDeleteDb(query, ds));
 
 			query = "DELETE FROM PUBLIC.USER_DATA_GENERAL WHERE UID = " + id
 					+ ";";
-
+			
 			jsonResponses.put(DbHelper.executeDeleteDb(query, ds));
 		}
 
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
-
+		
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
 				.entity(jsonFinal.toString()).build();
 	}
@@ -169,7 +173,8 @@ public class UserResource {
 			query = "UPDATE PUBLIC.USER_DATA_GENERAL SET START_WEIGHT = \'"
 					+ user.getStartWeight() + "\', START_DATE = \'"
 					+ convertDate(user.getStartDate()) + "\', BIRTHDATE = \'"
-					+ convertDate(user.getBirthDate()) + "\' WHERE UID = " + id + ";";
+					+ convertDate(user.getBirthDate()) + "\' WHERE UID = " + id
+					+ ";";
 
 			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
 		}
@@ -183,5 +188,14 @@ public class UserResource {
 	private String convertDate(Date dateToFormat) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(dateToFormat);
+	}
+
+	public String checkDateForNull(Date date) {
+		String convertedDate;
+		if (date != null) {
+			return convertedDate = convertDate(date);
+		} else {
+			return convertedDate = convertDate(new Date(0));
+		}
 	}
 }

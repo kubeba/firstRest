@@ -1,0 +1,632 @@
+2017-02-22 17:09:28 INFO  ENGINE:? - checkpointClose start
+2017-02-22 17:09:28 INFO  ENGINE:? - checkpointClose end
+2017-02-22 17:09:28 INFO  UserResource:40 - [{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-22 17:09:28 INFO  UserResource:40 - [{"errorMessage":"user lacks privilege or object not found: QUERY","httpCode":500,"sqlState":"42501","errorCode":-5501}]
+2017-02-22 17:09:43 INFO  ENGINE:? - checkpointClose start
+2017-02-22 17:09:43 INFO  ENGINE:? - checkpointClose end
+2017-02-22 17:09:43 INFO  UserResource:40 - []
+2017-02-22 17:10:02 INFO  UserResource:40 - [{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-22 17:12:47 INFO  UserResource:40 - [{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-22 17:13:19 INFO  UserResource:40 - [{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-22 17:13:38 INFO  ENGINE:? - checkpointClose start
+2017-02-22 17:13:38 INFO  ENGINE:? - checkpointClose end
+2017-02-22 17:13:38 INFO  UserResource:40 - Found that or getByID: {"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":2,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"}
+2017-02-22 17:21:18 INFO  ENGINE:? - checkpointClose start
+2017-02-22 17:21:18 INFO  ENGINE:? - checkpointClose end
+2017-02-22 17:21:18 INFO  UserResource:112 - Error statuuus from insert: {"httpCode":200,"Message":"Everything's fine."}
+2017-02-22 17:22:38 INFO  UserResource:40 - Found that or getByID 10000: {"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}
+2017-02-22 17:22:52 INFO  UserResource:136 - Query for delete user: DELETE FROM USERS WHERE UID = 10000;
+2017-02-22 17:22:52 INFO  UserResource:143 - Query for delete user general: DELETE FROM PUBLIC.USER_DATA_GENERAL WHERE UID = 10000;
+2017-02-22 17:22:52 INFO  UserResource:150 - error statuuus from delete: {"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-22 17:35:46 INFO  ENGINE:? - checkpointClose start
+2017-02-22 17:35:46 INFO  ENGINE:? - checkpointClose end
+2017-02-22 17:35:46 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 10000;
+2017-02-22 17:35:46 INFO  DbHelper:70 - This is the result: 
+[]
+2017-02-22 17:36:03 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) VALUES (10000, 'Heinrich', 'Klatze-Kleist', 'Dreist');
+2017-02-22 17:36:03 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-22 17:36:03 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) VALUES (10000, 87.0, '1970-01-01', '1970-01-01');
+2017-02-22 17:36:03 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-22 17:36:25 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) VALUES (10000, 'Heinrich', 'Klatze-Kleist', 'Dreist');
+2017-02-22 17:36:25 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; SYS_PK_10092 table: USERS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-22 17:36:25 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) VALUES (10000, 87.0, '1970-01-01', '1970-01-01');
+2017-02-22 17:36:25 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; SYS_PK_10104 table: USER_DATA_GENERAL","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-22 17:36:40 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 10000;
+2017-02-22 17:36:40 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-27 15:50:50 INFO  ENGINE:? - checkpointClose start
+2017-02-27 15:50:50 INFO  ENGINE:? - checkpointClose end
+2017-02-27 15:50:50 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 10000;
+2017-02-27 15:50:50 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-27 15:51:12 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID);
+2017-02-27 15:51:12 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"HORST","UID":0,"LAST_NAME":"BERGER","NICKNAME":"HOBIE"},{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":2,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":3,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":4,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":112,"BIRTHDATE":"1975-10-23","FIRST_NAME":"Boris","UID":105,"LAST_NAME":"Bern","NICKNAME":"Kallemann"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":199,"LAST_NAME":"Maierkäfer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":200,"LAST_NAME":"Maierkäfer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":300,"LAST_NAME":"Maierkäfer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":301,"LAST_NAME":"Maierkäfer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Fritz","UID":555,"LAST_NAME":"Frankwans","NICKNAME":"FriFra"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Burstl","UID":666,"LAST_NAME":"Bergbauernmilchlaake","NICKNAME":"Bergi"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Berni","UID":667,"LAST_NAME":"Gurkenlaster","NICKNAME":"gernold"},{"START_DATE":"2017-02-03","START_WEIGHT":150,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Jan","UID":668,"LAST_NAME":"Thaler","NICKNAME":"Theo"},{"START_DATE":"2017-02-03","START_WEIGHT":150,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Dieter","UID":669,"LAST_NAME":"Hirsekopf","NICKNAME":"Hanno"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Tobias","UID":1001,"LAST_NAME":"Maulwurf","NICKNAME":"Krutzitürken"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1002,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1003,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1004,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":100,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Sebi","UID":1005,"LAST_NAME":"Denebi","NICKNAME":"Benebi"},{"START_DATE":"2017-02-03","START_WEIGHT":77,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1006,"LAST_NAME":"Dosef","NICKNAME":"Boesl"},{"START_DATE":"2017-02-03","START_WEIGHT":177,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1007,"LAST_NAME":"Bonnfe","NICKNAME":"Ugator"},{"START_DATE":"2017-02-03","START_WEIGHT":177,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1008,"LAST_NAME":"Bonnfe-Mugutu","NICKNAME":"Ugator"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Fritz","UID":5001,"LAST_NAME":"Frankwans","NICKNAME":"FriFra"},{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-27 15:51:35 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) AND ((LOWER(u.LAST_NAME) LIKE '%iss%') OR (LOWER(u.FIRST_NAME) LIKE '%iss%') OR (LOWER(u.NICKNAME) LIKE '%iss%'));
+2017-02-27 15:51:35 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-27 15:51:49 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) VALUES (9999, 'Heinrich', 'Klatze-Kleist', 'Dreist');
+2017-02-27 15:51:49 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; SYS_PK_10092 table: USERS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 15:51:49 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) VALUES (9999, 87.0, '1970-01-01', '1970-01-01');
+2017-02-27 15:51:49 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 15:52:29 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 9999;
+2017-02-27 15:52:29 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"fName","UID":9999,"LAST_NAME":"lName","NICKNAME":"nName"}]
+2017-02-27 15:52:29 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM USERS WHERE UID = 9999;
+2017-02-27 15:52:29 INFO  DbHelper:97 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-27 15:52:29 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM PUBLIC.USER_DATA_GENERAL WHERE UID = 9999;
+2017-02-27 15:52:29 INFO  DbHelper:97 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-27 15:52:42 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) VALUES (9999, 'Heinrich', 'Klatze-Kleist', 'Dreist');
+2017-02-27 15:52:42 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 15:52:42 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) VALUES (9999, 87.0, '1970-01-01', '1970-01-01');
+2017-02-27 15:52:42 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 15:55:03 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USERS (UID, FIRST_NAME, LAST_NAME, NICKNAME) VALUES (9999, 'Heinrich', 'Klatze-Kleist', 'Dreist');
+2017-02-27 15:55:03 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; SYS_PK_10092 table: USERS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 15:55:03 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) VALUES (9999, 87.0, '1970-01-01', '1970-01-01');
+2017-02-27 15:55:03 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; SYS_PK_10104 table: USER_DATA_GENERAL","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 16:23:58 INFO  ENGINE:? - checkpointClose start
+2017-02-27 16:23:58 INFO  ENGINE:? - checkpointClose end
+2017-02-27 16:23:58 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 10000;
+2017-02-27 16:23:58 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-27 16:24:38 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 10000;
+2017-02-27 16:24:38 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-27 16:24:52 INFO  ENGINE:? - checkpointClose start
+2017-02-27 16:24:52 INFO  ENGINE:? - checkpointClose end
+2017-02-27 16:24:52 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 16:24:52 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-10-03","KCAL_SPORT":800},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":109,"UID":10000,"DATE":"2017-10-04","KCAL_SPORT":822},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":108.6,"UID":10000,"DATE":"2017-10-05","KCAL_SPORT":100}]
+2017-02-27 16:54:28 INFO  ENGINE:? - checkpointClose start
+2017-02-27 16:54:29 INFO  ENGINE:? - checkpointClose end
+2017-02-27 16:54:29 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 16:54:29 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-10-03","KCAL_SPORT":800},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":109,"UID":10000,"DATE":"2017-10-04","KCAL_SPORT":822},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":108.6,"UID":10000,"DATE":"2017-10-05","KCAL_SPORT":100}]
+2017-02-27 16:58:54 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-10-02', 110.0, 'Ganze Menge Fleisch', true, true, 1000.0);
+2017-02-27 16:58:54 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 16:59:07 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 16:59:07 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-10-03","KCAL_SPORT":800},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":109,"UID":10000,"DATE":"2017-10-04","KCAL_SPORT":822},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":108.6,"UID":10000,"DATE":"2017-10-05","KCAL_SPORT":100},{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000}]
+2017-02-27 16:59:18 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-10-02', 110.0, 'Ganze Menge Fleisch', true, true, 1000.0);
+2017-02-27 16:59:18 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 16:59:32 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-02', 110.0, 'Ganze Menge Fleisch', true, true, 999.0);
+2017-02-27 16:59:32 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 16:59:47 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 16:59:47 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-10-03","KCAL_SPORT":800},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":109,"UID":10000,"DATE":"2017-10-04","KCAL_SPORT":822},{"SPORT":true,"SWEETS":false,"FOOD":"Nur Fisch","WEIGHT":108.6,"UID":10000,"DATE":"2017-10-05","KCAL_SPORT":100},{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-10-02","KCAL_SPORT":1000},{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999}]
+2017-02-27 17:06:41 INFO  ENGINE:? - checkpointClose start
+2017-02-27 17:06:41 INFO  ENGINE:? - checkpointClose end
+2017-02-27 17:06:41 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-02', 110.0, 'Ganze Menge Fleisch', true, true, 999.0);
+2017-02-27 17:06:41 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:06:43 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-02', 110.0, 'Ganze Menge Fleisch', true, true, 999.0);
+2017-02-27 17:06:43 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; UCDATEANDID table: USER_DATA_PROGRESS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 17:07:07 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-03', 110.0, 'Nur Gemüse', true, true, 888.0);
+2017-02-27 17:07:07 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:07:23 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-04', 110.0, 'Nur Hunh und Reis', true, true, 777.0);
+2017-02-27 17:07:23 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:07:43 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-05', 113.0, 'Mahlzeit ohne Ende', true, false, 666.0);
+2017-02-27 17:07:43 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:08:11 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-06', 114.0, 'Sahnetorte mit Fleisch', false, true, 0.0);
+2017-02-27 17:08:11 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:08:15 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-06', 114.0, 'Sahnetorte mit Fleisch', false, true, 0.0);
+2017-02-27 17:08:15 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; UCDATEANDID table: USER_DATA_PROGRESS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 17:08:30 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 17:08:30 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0}]
+2017-02-27 17:09:53 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( 10000, '2017-09-07', 115.0, 'Fleisch mit Fett und Brot', false, true, 0.0);
+2017-02-27 17:09:53 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 17:10:00 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 17:10:00 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 17:57:52 INFO  ENGINE:? - checkpointClose start
+2017-02-27 17:57:52 INFO  ENGINE:? - checkpointClose end
+2017-02-27 17:57:52 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-07', 115.0, 'Fleisch mit Fett und Brot', false, true, 0.0);
+2017-02-27 17:57:52 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; UCDATEANDID table: USER_DATA_PROGRESS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 17:57:58 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 17:57:58 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 17:58:14 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 17:58:14 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 18:00:14 INFO  ENGINE:? - checkpointClose start
+2017-02-27 18:00:14 INFO  ENGINE:? - checkpointClose end
+2017-02-27 18:00:14 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:00:14 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 18:01:07 INFO  ENGINE:? - checkpointClose start
+2017-02-27 18:01:07 INFO  ENGINE:? - checkpointClose end
+2017-02-27 18:01:07 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:01:07 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 18:04:08 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:04:08 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 18:06:27 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:06:27 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-27 18:07:35 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-07', 115.0, 'Fleisch mit Fett und Brot', false, true, 0.0);
+2017-02-27 18:07:35 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; UCDATEANDID table: USER_DATA_PROGRESS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-02-27 18:08:23 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-08', 115.0, 'Fleisch mit noch mehr Fleisch', false, true, 0.0);
+2017-02-27 18:08:23 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-27 18:08:41 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:08:41 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-27 18:11:02 INFO  ENGINE:? - checkpointClose start
+2017-02-27 18:11:02 INFO  ENGINE:? - checkpointClose end
+2017-02-27 18:11:23 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-27 18:11:23 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-27 18:11:38 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM USER_DATA_PROGRESS WHERE UID = '10000', AND DATE = '2017-09-07';
+2017-02-27 18:11:38 INFO  DbHelper:97 - This is the result: 
+{"errorMessage":"unexpected token: ,","httpCode":500,"sqlState":"42581","errorCode":-5581}
+2017-02-28 08:53:13 INFO  ENGINE:? - checkpointClose start
+2017-02-28 08:53:13 INFO  ENGINE:? - checkpointClose end
+2017-02-28 08:53:13 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 08:53:13 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 08:54:12 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 08:54:12 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 08:54:47 INFO  ENGINE:? - checkpointClose start
+2017-02-28 08:54:47 INFO  ENGINE:? - checkpointClose end
+2017-02-28 08:54:51 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 08:54:51 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 08:55:04 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM USER_DATA_PROGRESS WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 08:55:04 INFO  DbHelper:97 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-28 08:55:21 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 08:55:21 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-28 08:55:29 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-08', 115.0, 'Fleisch mit noch mehr Fleisch', false, true, 0.0);
+2017-02-28 08:55:29 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 08:55:35 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 08:55:35 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 08:55:49 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM USER_DATA_PROGRESS WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 08:56:07 INFO  DbHelper:97 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-28 15:01:05 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:01:05 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:01:05 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 15:01:05 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0}]
+2017-02-28 15:01:12 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-08', 115.0, 'Fleisch mit noch mehr Fleisch', false, true, 0.0);
+2017-02-28 15:01:12 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 15:06:35 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:06:35 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:06:45 INFO  DbHelper:79 - This query will be executed (delete): 
+DELETE FROM USER_DATA_PROGRESS WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 15:06:45 INFO  DbHelper:97 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine. Contact deleted."}
+2017-02-28 15:07:51 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:07:51 INFO  DbHelper:70 - This is the result: 
+[]
+2017-02-28 15:20:08 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:20:08 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:20:09 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-08', 115.0, 'Fleisch mit noch mehr Fleisch', false, true, 0.0);
+2017-02-28 15:20:09 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 15:21:05 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:21:05 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:21:58 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:21:58 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:22:00 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:22:00 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:23:08 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:23:08 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:23:11 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:23:12 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:24:39 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:24:39 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:24:44 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:24:45 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:36:42 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:36:42 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:36:44 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:36:45 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:39:47 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:39:47 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:39:52 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:39:52 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:46:40 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:46:40 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:52:31 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:52:31 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:52:33 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:52:33 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:52:56 INFO  DataResource:138 - jsonIn: weight
+2017-02-28 15:54:41 INFO  ENGINE:? - checkpointClose start
+2017-02-28 15:54:41 INFO  ENGINE:? - checkpointClose end
+2017-02-28 15:54:43 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 15:54:43 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 15:54:56 INFO  DataResource:138 - jsonIn: weight value: 98
+2017-02-28 15:54:57 INFO  DataResource:139 - jsonDb: WEIGHT value: 115
+2017-02-28 15:55:07 INFO  DataResource:138 - jsonIn: kcal_sport value: 1000
+2017-02-28 15:55:07 INFO  DataResource:139 - jsonDb: KCAL_SPORT value: 0
+2017-02-28 15:55:22 INFO  DataResource:138 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 15:55:23 INFO  DataResource:139 - jsonDb: FOOD value: Fleisch mit noch mehr Fleisch
+2017-02-28 16:03:21 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:03:21 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:03:21 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:03:21 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:03:21 INFO  DataResource:138 - jsonIn: weight value: 98
+2017-02-28 16:03:21 INFO  DataResource:139 - jsonDb: WEIGHT value: 115
+2017-02-28 16:03:21 INFO  DataResource:138 - jsonIn: kcal_sport value: 1000
+2017-02-28 16:03:21 INFO  DataResource:139 - jsonDb: KCAL_SPORT value: 0
+2017-02-28 16:03:21 INFO  DataResource:138 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 16:03:21 INFO  DataResource:139 - jsonDb: FOOD value: Fleisch mit noch mehr Fleisch
+2017-02-28 16:03:21 INFO  DataResource:145 - jsonDb: {"SWEETS":false,"SPORT":true,"FOOD":"Fleischeslust ohen Frust","WEIGHT":98,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}
+2017-02-28 16:05:44 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:05:44 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:05:44 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:05:44 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:05:44 INFO  DataResource:145 - jsonDb: {"SWEETS":false,"SPORT":true,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}
+2017-02-28 16:06:26 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:06:26 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:06:28 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:06:28 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:07:24 INFO  DataResource:145 - jsonDb: {"SWEETS":false,"SPORT":true,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}
+2017-02-28 16:09:36 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:09:36 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:09:36 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 16:09:36 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:13:46 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:13:46 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:13:48 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:13:48 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:14:04 INFO  DataResource:146 - jsonDb: {"SWEETS":false,"SPORT":true,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}
+2017-02-28 16:14:57 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:14:57 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:15:11 INFO  DataResource:140 - jsonIn: uid value: 10000
+2017-02-28 16:15:45 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:15:45 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:15:50 INFO  DataResource:140 - jsonIn: uid value: 10000
+2017-02-28 16:15:51 INFO  DataResource:141 - jsonDb: uid value: 10000
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: weight value: 98
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: weight value: 115
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: sweets value: false
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: sweets value: false
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: kcal_sport value: 1000
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: kcal_sport value: 0
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: sport value: true
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: sport value: true
+2017-02-28 16:16:04 INFO  DataResource:140 - jsonIn: date value: 2017-09-08
+2017-02-28 16:16:04 INFO  DataResource:141 - jsonDb: date value: 2017-09-08
+2017-02-28 16:16:04 INFO  DataResource:147 - jsonDb: {"uid":10000,"weight":98,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 16:16:58 INFO  ENGINE:? - checkpointClose start
+2017-02-28 16:16:58 INFO  ENGINE:? - checkpointClose end
+2017-02-28 16:17:00 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:17:00 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:17:21 INFO  DataResource:140 - jsonIn: uid value: 10000
+2017-02-28 16:17:22 INFO  DataResource:141 - jsonDb: uid value: 10000
+2017-02-28 16:17:33 INFO  DataResource:140 - jsonIn: weight value: 98
+2017-02-28 16:17:33 INFO  DataResource:141 - jsonDb: weight value: 115
+2017-02-28 16:17:38 INFO  DataResource:140 - jsonIn: sweets value: false
+2017-02-28 16:17:38 INFO  DataResource:141 - jsonDb: sweets value: false
+2017-02-28 16:17:41 INFO  DataResource:140 - jsonIn: kcal_sport value: 1000
+2017-02-28 16:17:42 INFO  DataResource:141 - jsonDb: kcal_sport value: 0
+2017-02-28 16:17:45 INFO  DataResource:140 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 16:17:48 INFO  DataResource:141 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 16:18:13 INFO  DataResource:140 - jsonIn: sport value: true
+2017-02-28 16:18:13 INFO  DataResource:141 - jsonDb: sport value: true
+2017-02-28 16:18:20 INFO  DataResource:140 - jsonIn: date value: 2017-09-08
+2017-02-28 16:18:20 INFO  DataResource:141 - jsonDb: date value: 2017-09-08
+2017-02-28 16:18:23 INFO  DataResource:147 - jsonDb: {"uid":10000,"weight":98,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 16:20:14 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 16:20:14 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 16:20:20 INFO  DataResource:140 - jsonIn: uid value: 10000
+2017-02-28 16:20:20 INFO  DataResource:141 - jsonDb: uid value: 10000
+2017-02-28 16:20:22 INFO  DataResource:140 - jsonIn: sweets value: false
+2017-02-28 16:20:23 INFO  DataResource:141 - jsonDb: sweets value: false
+2017-02-28 16:20:24 INFO  DataResource:140 - jsonIn: kcal_sport value: 1000
+2017-02-28 16:20:24 INFO  DataResource:141 - jsonDb: kcal_sport value: 0
+2017-02-28 16:20:26 INFO  DataResource:140 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 16:20:26 INFO  DataResource:141 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 16:20:29 INFO  DataResource:140 - jsonIn: sport value: true
+2017-02-28 16:20:29 INFO  DataResource:141 - jsonDb: sport value: true
+2017-02-28 16:20:32 INFO  DataResource:140 - jsonIn: date value: 2017-09-08
+2017-02-28 16:20:32 INFO  DataResource:141 - jsonDb: date value: 2017-09-08
+2017-02-28 16:20:34 INFO  DataResource:147 - jsonDb: {"uid":10000,"sweets":false,"kcal_sport":1000,"WEIGHT":115,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:24:15 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:24:15 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:24:15 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:24:15 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:24:40 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:24:40 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:28:32 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:28:32 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:28:36 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:28:36 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:31:08 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:31:08 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:31:10 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:31:10 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:33:06 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:33:06 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:33:38 INFO  DataResource:141 - jsonIn: kcal_sport value: 1000
+2017-02-28 17:33:39 INFO  DataResource:142 - jsonDb: kcal_sport value: 0
+2017-02-28 17:33:49 INFO  DataResource:141 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 17:33:50 INFO  DataResource:142 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 17:34:10 INFO  DataResource:148 - jsonDb: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:49:10 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:49:10 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:49:10 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":0,"food":"Fleisch mit noch mehr Fleisch","sport":true,"date":"2017-09-08"}
+2017-02-28 17:49:22 INFO  DataResource:143 - jsonIn: kcal_sport value: 1000
+2017-02-28 17:49:23 INFO  DataResource:144 - jsonDb: kcal_sport value: 0
+2017-02-28 17:49:24 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 17:49:24 INFO  DataResource:144 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 17:49:27 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:52:08 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:52:08 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:52:11 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-10';
+2017-02-28 17:52:11 INFO  DbHelper:70 - This is the result: 
+[]
+2017-02-28 17:52:40 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:52:40 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:53:01 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":0,"food":"Fleisch mit noch mehr Fleisch","sport":true,"date":"2017-09-08"}
+2017-02-28 17:53:10 INFO  DataResource:143 - jsonIn: kcal_sport value: 1000
+2017-02-28 17:53:10 INFO  DataResource:144 - jsonDb: kcal_sport value: 0
+2017-02-28 17:53:13 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 17:53:13 INFO  DataResource:144 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 17:53:18 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:53:39 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-08', WEIGTH = 115.0, FOOD = 'Fleischeslust ohen Frust', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = 'Fri Sep 08 02:00:00 CEST 2017';
+2017-02-28 17:53:49 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"user lacks privilege or object not found: WEIGTH","httpCode":500,"sqlState":"42501","errorCode":-5501}
+2017-02-28 17:55:37 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = 1;
+2017-02-28 17:55:37 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"}]
+2017-02-28 17:55:38 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID);
+2017-02-28 17:55:38 INFO  DbHelper:70 - This is the result: 
+[{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"HORST","UID":0,"LAST_NAME":"BERGER","NICKNAME":"HOBIE"},{"START_DATE":"2017-02-03","START_WEIGHT":47,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Borissa","UID":1,"LAST_NAME":"Berlustoni","NICKNAME":"BoBe"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":2,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":3,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":76,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Franz","UID":4,"LAST_NAME":"Keferloher","NICKNAME":"Franzl"},{"START_DATE":"2017-02-03","START_WEIGHT":112,"BIRTHDATE":"1975-10-23","FIRST_NAME":"Boris","UID":105,"LAST_NAME":"Bern","NICKNAME":"Kallemann"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":199,"LAST_NAME":"Maierk?fer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":200,"LAST_NAME":"Maierk?fer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":300,"LAST_NAME":"Maierk?fer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Gustl","UID":301,"LAST_NAME":"Maierk?fer","NICKNAME":"Maiki"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Fritz","UID":555,"LAST_NAME":"Frankwans","NICKNAME":"FriFra"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Burstl","UID":666,"LAST_NAME":"Bergbauernmilchlaake","NICKNAME":"Bergi"},{"START_DATE":"2017-02-03","START_WEIGHT":190,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Berni","UID":667,"LAST_NAME":"Gurkenlaster","NICKNAME":"gernold"},{"START_DATE":"2017-02-03","START_WEIGHT":150,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Jan","UID":668,"LAST_NAME":"Thaler","NICKNAME":"Theo"},{"START_DATE":"2017-02-03","START_WEIGHT":150,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Dieter","UID":669,"LAST_NAME":"Hirsekopf","NICKNAME":"Hanno"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Tobias","UID":1001,"LAST_NAME":"Maulwurf","NICKNAME":"Krutzit?rken"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1002,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1003,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Kurt","UID":1004,"LAST_NAME":"Kurz","NICKNAME":"KuKu"},{"START_DATE":"2017-02-03","START_WEIGHT":100,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Sebi","UID":1005,"LAST_NAME":"Denebi","NICKNAME":"Benebi"},{"START_DATE":"2017-02-03","START_WEIGHT":77,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1006,"LAST_NAME":"Dosef","NICKNAME":"Boesl"},{"START_DATE":"2017-02-03","START_WEIGHT":177,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1007,"LAST_NAME":"Bonnfe","NICKNAME":"Ugator"},{"START_DATE":"2017-02-03","START_WEIGHT":177,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Josef","UID":1008,"LAST_NAME":"Bonnfe-Mugutu","NICKNAME":"Ugator"},{"START_DATE":"2017-02-03","START_WEIGHT":120,"BIRTHDATE":"1999-10-23","FIRST_NAME":"Fritz","UID":5001,"LAST_NAME":"Frankwans","NICKNAME":"FriFra"},{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":9999,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"},{"START_DATE":"1970-01-01","START_WEIGHT":87,"BIRTHDATE":"1970-01-01","FIRST_NAME":"Heinrich","UID":10000,"LAST_NAME":"Klatze-Kleist","NICKNAME":"Dreist"}]
+2017-02-28 17:55:38 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USERS u, USER_DATA_GENERAL ug WHERE (u.UID = ug.UID) and ug.UID = query?name=e;
+2017-02-28 17:55:38 INFO  DbHelper:70 - This is the result: 
+[{"errorMessage":"user lacks privilege or object not found: QUERY","httpCode":500,"sqlState":"42501","errorCode":-5501}]
+2017-02-28 17:55:50 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:55:51 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:55:52 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:55:52 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:55:54 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":0,"food":"Fleisch mit noch mehr Fleisch","sport":true,"date":"2017-09-08"}
+2017-02-28 17:55:58 INFO  DataResource:143 - jsonIn: kcal_sport value: 1000
+2017-02-28 17:55:59 INFO  DataResource:144 - jsonDb: kcal_sport value: 0
+2017-02-28 17:56:00 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 17:56:00 INFO  DataResource:144 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 17:56:03 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:56:09 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-08', WEIGHT = 115.0, FOOD = 'Fleischeslust ohen Frust', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = 'Fri Sep 08 02:00:00 CEST 2017';
+2017-02-28 17:56:09 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"data exception: invalid datetime format","httpCode":500,"sqlState":"22007","errorCode":-3407}
+2017-02-28 17:57:13 INFO  ENGINE:? - checkpointClose start
+2017-02-28 17:57:13 INFO  ENGINE:? - checkpointClose end
+2017-02-28 17:57:14 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 17:57:14 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit noch mehr Fleisch","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":0}]
+2017-02-28 17:57:17 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":0,"food":"Fleisch mit noch mehr Fleisch","sport":true,"date":"2017-09-08"}
+2017-02-28 17:57:25 INFO  DataResource:143 - jsonIn: kcal_sport value: 1000
+2017-02-28 17:57:25 INFO  DataResource:144 - jsonDb: kcal_sport value: 0
+2017-02-28 17:57:28 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohen Frust
+2017-02-28 17:57:28 INFO  DataResource:144 - jsonDb: food value: Fleisch mit noch mehr Fleisch
+2017-02-28 17:57:33 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 17:57:45 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-08', WEIGHT = 115.0, FOOD = 'Fleischeslust ohen Frust', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 17:57:50 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 17:58:11 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 17:58:11 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohen Frust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-02-28 18:01:17 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 18:01:17 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohen Frust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-02-28 18:04:35 INFO  ENGINE:? - checkpointClose start
+2017-02-28 18:04:35 INFO  ENGINE:? - checkpointClose end
+2017-02-28 18:04:35 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 18:04:35 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohen Frust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-02-28 18:04:35 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohen Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 18:04:35 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohne Frust
+2017-02-28 18:04:35 INFO  DataResource:144 - jsonDb: food value: Fleischeslust ohen Frust
+2017-02-28 18:04:35 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohne Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 18:04:35 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-08', WEIGHT = 115.0, FOOD = 'Fleischeslust ohne Frust', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 18:04:35 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 18:04:40 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 18:04:40 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohne Frust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-02-28 18:04:51 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-08';
+2017-02-28 18:04:51 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohne Frust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-02-28 18:04:51 INFO  DataResource:136 - jsonDb before: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohne Frust","sport":true,"date":"2017-09-08"}
+2017-02-28 18:04:51 INFO  DataResource:143 - jsonIn: food value: Fleischeslust ohne Frust aufa Brust
+2017-02-28 18:04:51 INFO  DataResource:144 - jsonDb: food value: Fleischeslust ohne Frust
+2017-02-28 18:04:51 INFO  DataResource:150 - jsonDb after: {"uid":10000,"weight":115,"sweets":false,"kcal_sport":1000,"food":"Fleischeslust ohne Frust aufa Brust","sport":true,"date":"2017-09-08"}
+2017-02-28 18:04:51 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-08', WEIGHT = 115.0, FOOD = 'Fleischeslust ohne Frust aufa Brust', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = '2017-09-08';
+2017-02-28 18:04:51 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-02-28 18:04:55 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000;
+2017-02-28 18:04:55 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Ganze Menge Fleisch","WEIGHT":110,"UID":10000,"DATE":"2017-09-02","KCAL_SPORT":999},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Gemüse","WEIGHT":110,"UID":10000,"DATE":"2017-09-03","KCAL_SPORT":888},{"SPORT":true,"SWEETS":true,"FOOD":"Nur Hunh und Reis","WEIGHT":110,"UID":10000,"DATE":"2017-09-04","KCAL_SPORT":777},{"SPORT":false,"SWEETS":true,"FOOD":"Mahlzeit ohne Ende","WEIGHT":113,"UID":10000,"DATE":"2017-09-05","KCAL_SPORT":666},{"SPORT":true,"SWEETS":false,"FOOD":"Sahnetorte mit Fleisch","WEIGHT":114,"UID":10000,"DATE":"2017-09-06","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleisch mit Fett und Brot","WEIGHT":115,"UID":10000,"DATE":"2017-09-07","KCAL_SPORT":0},{"SPORT":true,"SWEETS":false,"FOOD":"Fleischeslust ohne Frust aufa Brust","WEIGHT":115,"UID":10000,"DATE":"2017-09-08","KCAL_SPORT":1000}]
+2017-03-01 12:42:25 INFO  ENGINE:? - checkpointClose start
+2017-03-01 12:42:25 INFO  ENGINE:? - checkpointClose end
+2017-03-01 12:42:26 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-08', 115.0, 'Fleisch mit noch ganz viel mehr Fleisch', false, true, 0.0);
+2017-03-01 12:42:26 INFO  DbHelper:42 - This is the result: 
+{"errorMessage":"integrity constraint violation: unique constraint or index violation; UCDATEANDID table: USER_DATA_PROGRESS","httpCode":500,"sqlState":"23505","errorCode":-104}
+2017-03-01 12:42:45 INFO  DbHelper:24 - This query will be executed (inserted): 
+INSERT INTO USER_DATA_PROGRESS (UID, DATE, WEIGHT, FOOD, SWEETS, SPORT, KCAL_SPORT) VALUES ( '10000', '2017-09-09', 112.0, 'Fleisch mit noch ganz viel mehr Fleisch', true, true, 200.0);
+2017-03-01 12:42:45 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}
+2017-03-01 12:44:10 INFO  DbHelper:53 - This query will be executed (getData): 
+SELECT * FROM USER_DATA_PROGRESS WHERE UID = 10000 AND DATE = '2017-09-09';
+2017-03-01 12:44:10 INFO  DbHelper:70 - This is the result: 
+[{"SPORT":true,"SWEETS":true,"FOOD":"Fleisch mit noch ganz viel mehr Fleisch","WEIGHT":112,"UID":10000,"DATE":"2017-09-09","KCAL_SPORT":200}]
+2017-03-01 12:44:10 INFO  DataResource:134 - jsonDb before: {"SWEETS":true,"SPORT":true,"FOOD":"Fleisch mit noch ganz viel mehr Fleisch","WEIGHT":112,"UID":10000,"DATE":"2017-09-09","KCAL_SPORT":200}
+2017-03-01 12:44:10 INFO  DataResource:168 - Keys to be merged - jsonIn: sweets value: false
+2017-03-01 12:44:10 INFO  DataResource:169 - Keys to be merged - jsonDb: sweets value: true
+2017-03-01 12:44:10 INFO  DataResource:168 - Keys to be merged - jsonIn: kcal_sport value: 1000
+2017-03-01 12:44:10 INFO  DataResource:169 - Keys to be merged - jsonDb: kcal_sport value: 200
+2017-03-01 12:44:10 INFO  DataResource:168 - Keys to be merged - jsonIn: food value: Heute mal Brit mit Buddha
+2017-03-01 12:44:10 INFO  DataResource:169 - Keys to be merged - jsonDb: food value: Fleisch mit noch ganz viel mehr Fleisch
+2017-03-01 12:44:10 INFO  DataResource:138 - jsonDb after: {"uid":10000,"weight":112,"sweets":false,"kcal_sport":1000,"food":"Heute mal Brit mit Buddha","sport":true,"date":"2017-09-09"}
+2017-03-01 12:44:10 INFO  DbHelper:24 - This query will be executed (inserted): 
+UPDATE USER_DATA_PROGRESS SET DATE = '2017-09-09', WEIGHT = 112.0, FOOD = 'Heute mal Brit mit Buddha', SWEETS = false, SPORT = true, KCAL_SPORT = 1000.0 WHERE UID = '10000' AND DATE = '2017-09-09';
+2017-03-01 12:44:10 INFO  DbHelper:42 - This is the result: 
+{"httpCode":200,"Message":"Everything's fine."}

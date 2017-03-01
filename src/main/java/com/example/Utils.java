@@ -46,9 +46,11 @@ public class Utils {
         hikariConfig.setIdleTimeout(120000L);
         hikariConfig.setInitializationFailFast(true);
         hikariConfig.setJdbcUrl("jdbc:hsqldb:file:" + dbFile + ";hsqldb.write_delay=false");
-        hikariConfig.setMaximumPoolSize(1);
+        hikariConfig.setMaximumPoolSize(10);
         hikariConfig.setPassword("sa");
         hikariConfig.setUsername("SA");
+        hikariConfig.setConnectionInitSql("SET DATABASE TRANSACTION CONTROL MVCC");
+        hikariConfig.setConnectionInitSql("COMMIT;");
         
     	DataSource ds = new HikariDataSource(hikariConfig);
     	
