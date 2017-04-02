@@ -38,7 +38,7 @@ public class UserResource {
 
 		JSONArray json = DbHelper.executeQueryDb(DbHelper.getUserQueryById(id));
 
-		return Response.status(200).entity(json.toString()).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "http://localhost").entity(json.toString()).build();
 	}
 
 	@GET
@@ -50,7 +50,7 @@ public class UserResource {
 				+ " (u.UID = ug.UID);";
 		JSONArray json = DbHelper.executeQueryDb(query);
 		
-		return Response.status(200).entity(json.toString()).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "http://localhost").entity(json.toString()).build();
 	}
 
 	@GET
@@ -67,7 +67,7 @@ public class UserResource {
 
 		JSONArray json = DbHelper.executeQueryDb(query);
 
-		return Response.status(200).entity(json.toString()).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "http://localhost").entity(json.toString()).build();
 	}
 
 	@POST
@@ -109,7 +109,7 @@ public class UserResource {
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 		
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	@DELETE
@@ -141,7 +141,7 @@ public class UserResource {
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 		
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	@PUT
@@ -182,7 +182,7 @@ public class UserResource {
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	private String convertDate(Date dateToFormat) {
