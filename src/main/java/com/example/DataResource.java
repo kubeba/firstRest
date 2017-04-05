@@ -41,7 +41,7 @@ public class DataResource {
 		JSONArray json = DbHelper.executeQueryDb(DbHelper
 				.getAllUserProgressById(id));
 
-		return Response.status(200).entity(json.toString()).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "http://localhost").entity(json.toString()).build();
 	}
 
 	@POST
@@ -65,12 +65,12 @@ public class DataResource {
 				+ data.isSport() + ", " + data.isSweets() + ", "
 				+ data.getKcal_sport() + ");";
 
-		jsonResponses.put(DbHelper.executeInsertDb(createNewDate, ds));
+		jsonResponses.put(DbHelper.executeInsertDbOnePhase(createNewDate, ds));
 
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	@POST
@@ -103,7 +103,7 @@ public class DataResource {
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	@PUT
@@ -150,13 +150,13 @@ public class DataResource {
 					+ dataDb.getUid() + "\' AND DATE = \'" 
 					+ checkDateForNull(dataDb.getDate()) + "\';";
 
-			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
+			jsonResponses.put(DbHelper.executeInsertDbOnePhase(query, ds));
 
 		}
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
-				.entity(jsonFinal.toString()).build();
+				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
 	}
 
 	public JSONObject mergeForUpdate(JSONObject jsonIn, JSONObject jsonDb) {
