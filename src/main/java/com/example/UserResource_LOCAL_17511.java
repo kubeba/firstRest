@@ -98,6 +98,8 @@ public class UserResource {
 				+ "\', \'"
 				+ user.getLastName() + "\', \'" + user.getNickName() + "\');";
 
+//		jsonResponses.put(DbHelper.executeInsertDbOnePhase(createUserString, ds));
+
 		String createUserDataString = "INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) "
 				+ "VALUES ("
 				+ maxUID
@@ -109,6 +111,8 @@ public class UserResource {
 		String[] sqlQueries = new String[5]; 
 		sqlQueries[0] = createUserString;
 		sqlQueries[1] = createUserDataString;
+		
+//		List<String> listOfQueries = getCleanArrayList(sqlQueries);
 		
 		jsonResponses.put(DbHelper.executeInsertDbTwoPhase(getCleanArrayList(sqlQueries), ds));
 

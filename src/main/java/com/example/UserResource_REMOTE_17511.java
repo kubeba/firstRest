@@ -3,10 +3,7 @@ package com.example;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.sql.DataSource;
 import javax.ws.rs.DELETE;
@@ -98,6 +95,8 @@ public class UserResource {
 				+ "\', \'"
 				+ user.getLastName() + "\', \'" + user.getNickName() + "\');";
 
+		jsonResponses.put(DbHelper.executeInsertDb(createUserString, ds));
+
 		String createUserDataString = "INSERT INTO PUBLIC.USER_DATA_GENERAL (UID, START_WEIGHT, START_DATE, BIRTHDATE) "
 				+ "VALUES ("
 				+ maxUID
@@ -105,23 +104,12 @@ public class UserResource {
 				+ user.getStartWeight()
 				+ ", \'"
 				+ sDate + "\', \'" + bDate + "\');";
-		
-		String[] sqlQueries = new String[5]; 
-		sqlQueries[0] = createUserString;
-		sqlQueries[1] = createUserDataString;
-		
-		jsonResponses.put(DbHelper.executeInsertDbTwoPhase(getCleanArrayList(sqlQueries), ds));
+		jsonResponses.put(DbHelper.executeInsertDb(createUserDataString, ds));
 
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
 		
 		return Response.status((int) jsonFinal.get(MyConstants.getHttpCode()))
 				.header("Access-Control-Allow-Origin", "http://localhost").entity(jsonFinal.toString()).build();
-	}
-
-	public List<String> getCleanArrayList(String[] sqlQueries) {
-		List<String> listOfQueries = new ArrayList<String>(Arrays.asList(sqlQueries));
-		listOfQueries.removeAll(Arrays.asList("", null));
-		return listOfQueries;
 	}
 
 	@DELETE
@@ -180,7 +168,7 @@ public class UserResource {
 					+ user.getLastName() + "\', NICKNAME = \'"
 					+ user.getNickName() + "\' WHERE UID = " + id + ";";
 
-			jsonResponses.put(DbHelper.executeInsertDbOnePhase(query, ds));
+			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
 
 			query = "UPDATE PUBLIC.USER_DATA_GENERAL SET START_WEIGHT = \'"
 					+ user.getStartWeight() + "\', START_DATE = \'"
@@ -188,7 +176,7 @@ public class UserResource {
 					+ convertDate(user.getBirthDate()) + "\' WHERE UID = " + id
 					+ ";";
 
-			jsonResponses.put(DbHelper.executeInsertDbOnePhase(query, ds));
+			jsonResponses.put(DbHelper.executeInsertDb(query, ds));
 		}
 
 		JSONObject jsonFinal = Helpers.getBestResponse(jsonResponses);
